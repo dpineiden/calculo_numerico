@@ -1,0 +1,24 @@
+function [A,B,F,C]=analisisf(xo,f,N)
+
+[Xc,co1,no1,xn1]=newton(xo,f,N);
+[sc,co2,no2,xn2]=schroder(xo,f,N);
+[wh,co3,no3,xn3]=whittaker(xo,f,N);
+[ha,co4,no4,xn4]=halley(xo,f,N);
+[to,co5,no5,xn5]=traubostrowski(xo,f,N);
+[nn,co6,no6,xn6]=newtonnewton(xo,f,N);
+
+A(:,1)=[Xc;sc;wh;ha;to;nn];
+B(:,1)=[no1,no2,no3,no4,no5,no6];
+F(:,1)=[co1,co2,co3,co4,co5,co6];
+
+l(:,1)=length(xn1);
+l(:,2)=length(xn2);
+l(:,3)=length(xn3);
+l(:,4)=length(xn4);
+l(:,5)=length(xn5);
+l(:,6)=length(xn6);
+
+lm=max(l);
+
+Cx=[zeros(1,lm-l(1)) xn1 ;zeros(1,lm-l(2)) xn2 ;zeros(1,lm-l(3)) xn3 ;zeros(1,lm-l(4)) xn4 ;zeros(1,lm-l(5)) xn5 ;zeros(1,lm-l(6)) xn6];
+C=Cx;

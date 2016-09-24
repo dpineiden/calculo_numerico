@@ -1,0 +1,49 @@
+syms x1
+syms x2
+syms x3
+H=['sin(x1)+2^x2+log(x3)-7';'3*x1+2*x2-x3^3+1      ';'x1+x2+x3-5            '];
+%se calcula el jacobiano:
+DH(1,:)=[diff(H(1,:),x1), diff(H(1,:),x2),diff(H(1,:),x3)];
+DH(2,:)=[diff(H(2,:),x1), diff(H(2,:),x2),diff(H(2,:),x3)];
+DH(3,:)=[diff(H(3,:),x1), diff(H(3,:),x2),diff(H(3,:),x3)];
+%se da el valor de partida:
+x1=0;
+x2=4;
+x3=2;
+x_1o=[x1;x2;x3];
+%se calcula H en ese punto
+Ho(1,:)=eval(H(1,:));
+Ho(2,:)=eval(H(2,:));
+Ho(3,:)=eval(H(3,:));
+%Se calcula el Jacobiano en ese punto
+DH1=eval(DH);
+%se calcula la Inversa del JAcobiano en ese punto
+DH_1=DH1^-1;
+%se calcula el siguiente valor de iteraciÃ³n
+x_1=[x1;x2;x3]-DH_1*Ho;
+%cantidad de iteraciones maxima:
+n=50; 
+%se define a = n, si se cumple condición de error antes,  cambia
+a=n; 
+
+for i=1:n  
+%error relativo entre aproximaciones sucecivas
+    er=norm(x_1-x_1o)/norm(x_1);
+    if er<.0001
+        a=i;
+       break; end
+   
+    x1=x_1(1);
+    x2=x_1(2);
+    x3=x_1(3);
+    x_1o=[x1;x2;x3];
+    Ho(1,:)=eval(H(1,:));
+    Ho(2,:)=eval(H(2,:));
+    Ho(3,:)=eval(H(3,:));
+    DH1=eval(DH);
+    DH_1=DH1^-1;
+    x_1=[x1;x2;x3]-DH_1*Ho;  
+    
+end
+    a
+    x_1

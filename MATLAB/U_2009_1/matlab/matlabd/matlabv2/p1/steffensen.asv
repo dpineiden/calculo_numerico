@@ -1,0 +1,28 @@
+function [ste,fx,ns,vn]=steffensen(f,xo,n)
+%ste: valor del cero función
+%fx: vector de valores de f por iteracion
+%ns: iteración en que se detiene
+%vn: valores por iteración
+syms x
+g=diff(f)
+syms t
+t=x+f
+syms x
+x=t
+g1=eval(g)
+syms x
+fn=x-f^2/(g1-f)
+x=xo;
+for i=1:1:n   
+    xo=x;
+    vn(:,i)=xo;    
+    x=eval(fn);
+    ee=abs(x-xo)/abs(x);
+    ns=i;
+    if ee<=10^-10
+        break
+    end
+end
+fx=eval(f);
+ste=x;
+

@@ -1,0 +1,11 @@
+function [L D U]=jacobildu(A)
+[m,n]=size(A);
+for i=1:n
+    for j=1:m
+        if 
+        elseif
+        elseif
+        end
+    end 
+end
+

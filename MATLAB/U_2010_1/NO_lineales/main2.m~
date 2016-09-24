@@ -1,0 +1,29 @@
+clear
+syms x
+fx1='x^3-x^2-x-1'
+fx2='1+0.3*cos(x)-x'
+fx3='1/2+sin(x)-cos(x)'
+
+%raiz positiva de 1
+%todas raices de 2
+%raiz positiv mas pequeña de 3
+
+
+%se grafican fns
+
+%  v=[-5:.01:5];
+%  n=length(v);
+%  for i=1:n
+%      x=v(i);
+%      ev_f1(i)=eval(fx1);
+%      ev_f2(i)=eval(fx2);
+%      ev_f3(i)=eval(fx3);
+%  end
+%  figure
+%  plot(v,ev_f1)
+% figure
+% plot(v,ev_f2)
+% figure
+% plot(v,ev_f3)
+
+[Xc1,no1,co1,fx1]=newton(xo,f,n)

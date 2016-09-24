@@ -1,0 +1,29 @@
+clear
+syms x;
+fd1='x^3-1';
+fd2='x*exp(x^2)-sin(x)^2+3*cos(x)+5';
+fd3='x^2*sin(x)^2+exp(x^2*cos(x)*sin(x))-28';
+fd4='exp(x^2+7*x-30)-1';
+fd5='sin(x)*exp(x)+log(x^2+1)';
+fd6='x^3*sin(1/x)+2*sin(x)';
+
+Xo=[1.01,-1.2,4.62,2.85,.1,.2];
+
+
+[A1, B1 ,C1]=analisisf(fd1,Xo(1),30);
+[A2, B2 ,C2]=analisisf(fd2,Xo(2),300);
+[A3, B3 ,C3]=analisisf(fd3,Xo(3),800);
+[A4, B4 ,C4]=analisisf(fd4,Xo(4),600);
+[A5, B5 ,C5]=analisisf(fd5,Xo(5),200);
+[A6, B6 ,C6]=analisisf(fd6,Xo(6),200);
+
+A=[A1, A2,A3,A4,A5,A6]
+B=[B1,B2,B3,B4,B5,B6]
+C=[C1,C2,C3,C4,C5,C6];
+
+p1=plotearf(B1,C1);
+p2=plotearf(B2,C2);
+p3=plotearf(B3,C3);
+p4=plotearf(B4,C4);
+p5=plotearf(B5,C5);
+p6=plotearf(B6,C6);

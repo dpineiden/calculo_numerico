@@ -1,0 +1,35 @@
+function [A,B,C,F]=analisisf(f,xo,n);
+[Xc,fx1,ns1,vn1]=newton(f,xo,n);
+[sc,fx2,ns2,vn2]=schroder(f,xo,n);
+[wh,fx3,ns3,vn3]=whittaker(f,xo,n);
+[ha,fx4,ns4,vn4]=halley(f,xo,n);
+[ch,fx5,ns5,vn5]=chebysev(xo,f,n);
+[sha,fx6,ns6,vn6]=superhalley(xo,f,n);
+[st,fx7,ns7,vn7]=stirling(f,xo,n);
+[ste,fx8,ns8,vn8]=steffensen(f,xo,n);
+[pm,fx9,ns9,vn9]=puntomedio(f,xo,n);
+[to,fx10,ns10,vn10]=traubostrowski(f,xo,n);
+[ja,fx11,ns11,vn11]=jarrat(xo,f,n);
+[nn,fx12,ns12,vn12]=newtonnewton(f,xo,n);
+
+A(:,1)=[Xc;sc;wh;ha;ch;sha;st;ste;pm;to;ja;nn];
+B(:,1)=[ns1,ns2,ns3,ns4,ns5,ns6,ns7,ns8,ns9,ns10,ns11,ns12];
+F(:,1)=[fx1,fx2,fx3,fx4,fx5,fx6,fx7,fx8,fx9,fx10,fx11,fx12];
+l(:,1)=length(vn1);
+l(:,2)=length(vn2);
+l(:,3)=length(vn3);
+l(:,4)=length(vn4);
+l(:,5)=length(vn5);
+l(:,6)=length(vn6);
+l(:,7)=length(vn7);
+l(:,8)=length(vn8);
+l(:,9)=length(vn9);
+l(:,10)=length(vn10);
+l(:,11)=length(vn11);
+l(:,12)=length(vn12);
+lm=max(l);
+
+Cx=[zeros(1,lm-l(1)) vn1 ;zeros(1,lm-l(2)) vn2 ;zeros(1,lm-l(3)) vn3 ;zeros(1,lm-l(4)) vn4 ;
+    zeros(1,lm-l(5)) vn5 ;zeros(1,lm-l(6)) vn6 ;zeros(1,lm-l(7)) vn7 ;zeros(1,lm-l(8)) vn8;
+    zeros(1,lm-l(9)) vn9 ; zeros(1,lm-l(10)) vn10; zeros(1,lm-l(11)) vn11;zeros(1,lm-l(12)) vn12 ];
+C=Cx;
